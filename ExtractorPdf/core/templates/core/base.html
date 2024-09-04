@@ -3,46 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Tela Inicial{% endblock %}</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .sidebar {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-        .sidebar a {
-            display: block;
-            padding: 10px;
-            margin-bottom: 5px;
-            color: #333;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #e9ecef;
-            border-radius: 4px;
-        }
-    </style>
+    <title>{% block title2 %}Minha Página{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
 </head>
-<body>
-    <div class="sidebar">
-        <h4>Menu</h4>
-        <a href="{% url 'setor-list' %}">Lista de Setores</a>
-        <a href="{% url 'setor-create' %}">Outro Item</a>
-        <!-- Adicione mais links conforme necessário -->
-    </div>
-    <div class="content">
+<body class="bg-gray-100 flex">
+    <!-- Sidebar -->
+    <aside class="w-64 h-screen bg-white shadow-lg fixed top-0 left-0 z-30">
+        <div class="flex items-center justify-between p-6 border-b border-gray-200">
+            <a href="{% url 'home' %}">
+                <!-- Imagem do logo -->
+                <img src="https://via.placeholder.com/150" alt="Logo" class="w-32">
+            </a>
+        </div>
+
+        <nav class="mt-6">
+            {% for item in menu_items %}
+                <a href="{{ item.url }}" class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-md">{{ item.name }}</a>
+            {% endfor %}
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64 p-6">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-semibold text-gray-800">{% block title %}Minha Página{% endblock %}</h1>
+        </div>
+
         {% block content %}
         <!-- Conteúdo específico da página vai aqui -->
         {% endblock %}
-    </div>
+    </main>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<div class="container mx-auto px-4">
+    <table class="min-w-full max-w-4xl mx-auto bg-white border border-gray-200">
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th class="py-3 px-4 border-b border-gray-300 text-left font-semibold">{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td class="py-3 px-4 border-b border-gray-300">{{ row.nome }}</td>
+                    <td class="py-3 px-4 border-b border-gray-300">{{ row.descricao }}</td>
+                    <td class="py-3 px-4 border-b border-gray-300 text-center">
+                        <div class="flex justify-center space-x-2">
+                            <a href="{{ row.edit_url }}" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded">Editar</a>
+                            <a href="{{ row.delete_url }}" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="{{ headers|length }}" class="py-3 px-4 text-center">Nenhum setor encontrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

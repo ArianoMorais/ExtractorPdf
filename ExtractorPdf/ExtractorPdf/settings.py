@@ -55,7 +55,7 @@ ROOT_URLCONF = 'ExtractorPdf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # Você pode adicionar diretórios de templates personalizados aqui, se necessário
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.menu_items',  # Adicione esta linha
             ],
         },
     },
